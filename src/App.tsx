@@ -9,10 +9,11 @@ import './styles/content.scss';
 
 export function App() {
   return (
+
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       
-    <Content/>
     <SideBar/>
+    <Content/>
       
     </div>
   )

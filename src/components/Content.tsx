@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { GenreResponseProps,MovieProps } from '../@types/custom';
 import { MovieCard } from './MovieCard'
 import '../styles/content.scss'
+import { api } from "../services/api"
 
 
 
