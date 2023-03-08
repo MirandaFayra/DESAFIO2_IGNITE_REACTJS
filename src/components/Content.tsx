@@ -1,6 +1,14 @@
+import { useState } from 'react';
+import { GenreResponseProps, MovieProps } from '../App';
 import { MovieCard } from '../components/MovieCard';
 
+
 export function Content() {
+  const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>({} as GenreResponseProps);
+  const [movies, setMovies] = useState<MovieProps[]>([]);
+
+  
+
   return (
     <>
     {/* Conteúdo princiapal com os cards */}

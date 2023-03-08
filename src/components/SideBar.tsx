@@ -1,15 +1,27 @@
-import { useState } from "react";
-import { GenreResponseProps } from "../App";
+import { useEffect, useState } from "react";
+import { GenreResponseProps, MovieProps } from "../App";
 import { Button } from '../components/Button';
 
 export function SideBar() {
-  /* Está sendo utilizado só na barra lateral */
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
-  
-  /* Está sendo utilizado só na barra lateral */
-  function handleClickButton(id: number) {
-    setSelectedGenreId(id);
-  }
+    const [selectedGenreId, setSelectedGenreId] = useState(1);
+    function handleClickButton(id: number) {
+      setSelectedGenreId(id);
+    }
+    useEffect(() => {
+      api.get<MovieProps[]>(`movies/?Genre_id=${selectedGenreId}`).then(response => {
+        setMovies(response.data);
+      });
+      api.get<GenreResponseProps>(`genres/${selectedGenreId}`).then(response => {
+        setSelectedGenre(response.data);
+      })
+    }, [selectedGenreId]);
+
+    useEffect(() => {
+        api.get<GenreResponseProps[]>('genres').then(response => {
+          setGenres(response.data);
+        });
+      }, []);
 
   return(
     <>

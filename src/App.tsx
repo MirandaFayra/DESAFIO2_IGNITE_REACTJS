@@ -26,32 +26,6 @@ export interface MovieProps {
 
 
 export function App() {
-  /* Está sendo utilizado só na barra lateral */
-  const [selectedGenreId, setSelectedGenreId] = useState(1);
-
-  /* Está sendo utilizado só na barra lateral */
-  const [genres, setGenres] = useState<GenreResponseProps[]>([]);
-
-  /* Está sendo utilizado nos dois */
-  const [movies, setMovies] = useState<MovieProps[]>([]);
-  const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>({} as GenreResponseProps);
-
-  /* Está sendo utilizado só na barra lateral */
-  useEffect(() => {
-    api.get<GenreResponseProps[]>('genres').then(response => {
-      setGenres(response.data);
-    });
-  }, []);
-
-  useEffect(() => {
-    api.get<MovieProps[]>(`movies/?Genre_id=${selectedGenreId}`).then(response => {
-      setMovies(response.data);
-    });
-
-    api.get<GenreResponseProps>(`genres/${selectedGenreId}`).then(response => {
-      setSelectedGenre(response.data);
-    })
-  }, [selectedGenreId]);
 
   
   return (
