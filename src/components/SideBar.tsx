@@ -1,5 +1,16 @@
+import { useState } from "react";
+import { GenreResponseProps } from "../App";
+import { Button } from '../components/Button';
+
 export function SideBar() {
-  // Complete aqui
+  /* Está sendo utilizado só na barra lateral */
+  const [genres, setGenres] = useState<GenreResponseProps[]>([]);
+  
+  /* Está sendo utilizado só na barra lateral */
+  function handleClickButton(id: number) {
+    setSelectedGenreId(id);
+  }
+
   return(
     <>
     {/* Barra Lateral */}
