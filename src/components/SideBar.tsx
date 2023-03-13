@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react";
-import { GenreResponseProps, MovieProps } from "../App";
+import { useEffect, useState } from 'react';
+import { GenreResponseProps } from '../@types/types';
 import { Button } from '../components/Button';
+import { api } from '../services/api';
 
-export function SideBar() {
+interface SideBarProps {
+  selectedGenreId:number;
+  handleClickButton:(id:number)=>void;
+}
+
+
+export function SideBar({handleClickButton,selectedGenreId}:SideBarProps  ) {
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
-    const [selectedGenreId, setSelectedGenreId] = useState(1);
-    function handleClickButton(id: number) {
-      setSelectedGenreId(id);
-    }
-    useEffect(() => {
-      api.get<MovieProps[]>(`movies/?Genre_id=${selectedGenreId}`).then(response => {
-        setMovies(response.data);
-      });
-      api.get<GenreResponseProps>(`genres/${selectedGenreId}`).then(response => {
-        setSelectedGenre(response.data);
-      })
-    }, [selectedGenreId]);
 
-    useEffect(() => {
-        api.get<GenreResponseProps[]>('genres').then(response => {
-          setGenres(response.data);
-        });
-      }, []);
+  //Busca da sidebar
+  useEffect(() => {
+    api.get<GenreResponseProps[]>('genres').then(response => {
+      setGenres(response.data);
+    });
+  }, []);
 
   return(
     <>

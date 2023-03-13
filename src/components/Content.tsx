@@ -1,13 +1,28 @@
-import { useState } from 'react';
-import { GenreResponseProps, MovieProps } from '../App';
+import { useEffect, useState } from 'react';
+import { GenreResponseProps, MovieProps } from '../@types/types';
 import { MovieCard } from '../components/MovieCard';
+import { api } from '../services/api';
 
 
-export function Content() {
-  const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>({} as GenreResponseProps);
+// Interface onde tipamos e organizamos as props
+
+interface ContentProps {
+  selectedGenreId:number;
+  selectedGenre:GenreResponseProps
+}
+
+
+// Por que desestruturou o selectId?
+export function Content({selectedGenreId, selectedGenre}:ContentProps) {
+
   const [movies, setMovies] = useState<MovieProps[]>([]);
-
   
+  useEffect(() => {
+    api.get<MovieProps[]>(`movies/?Genre_id=${selectedGenreId}`).then(response => {
+      setMovies(response.data);
+    });
+  }, [selectedGenreId]);
+
 
   return (
     <>
