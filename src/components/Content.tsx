@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
-import { MovieProps } from '../App';
+import { GenreResponseProps, MovieProps } from '../App';
 import { MovieCard } from '../components/MovieCard';
 import { api } from '../services/api';
 
-interface GenreResponseProps {
-  id: number;
-  name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
-  title: string;
-}
 
 // Interface onde tipamos e organizamos as props
 

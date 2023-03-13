@@ -1,8 +1,24 @@
+import { useEffect, useState } from 'react';
+import { GenreResponseProps } from '../App';
 import { Button } from '../components/Button';
+import { api } from '../services/api';
+
+interface SideBarProps {
+  selectedGenreId:number;
+  handleClickButton:(id:number)=>void;
+}
 
 
-export function SideBar() {
-  
+export function SideBar({handleClickButton,selectedGenreId}:SideBarProps  ) {
+  const [genres, setGenres] = useState<GenreResponseProps[]>([]);
+
+  //Busca da sidebar
+  useEffect(() => {
+    api.get<GenreResponseProps[]>('genres').then(response => {
+      setGenres(response.data);
+    });
+  }, []);
+
   return(
     <>
     {/* Barra Lateral */}
