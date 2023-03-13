@@ -3,8 +3,23 @@ import { MovieProps } from '../App';
 import { MovieCard } from '../components/MovieCard';
 import { api } from '../services/api';
 
+interface GenreResponseProps {
+  id: number;
+  name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
+  title: string;
+}
 
-export function Content() {
+// Interface onde tipamos e organizamos as props
+
+interface ContentProps {
+  selectedGenreId:number;
+  selectedGenre:GenreResponseProps
+}
+
+
+// Por que desestruturou o selectId?
+export function Content({selectedGenreId, selectedGenre}:ContentProps) {
+
   const [movies, setMovies] = useState<MovieProps[]>([]);
   
   useEffect(() => {
