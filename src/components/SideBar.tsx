@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { GenreResponseProps } from '../App';
+import { GenreResponseProps } from '../@types/types';
 import { Button } from '../components/Button';
 import { api } from '../services/api';
 
