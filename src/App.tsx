@@ -21,7 +21,7 @@ interface GenreResponseProps {
   title: string;
 }
 
-interface MovieProps {
+export interface MovieProps {
   imdbID: string;
   Title: string;
   Poster: string;
@@ -37,9 +37,9 @@ export function App() {
 
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
 
-  const [movies, setMovies] = useState<MovieProps[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>({} as GenreResponseProps);
 
+  // Content e sidebar precisam saber os generos selecionados 
   useEffect(() => {
     api.get<GenreResponseProps[]>('genres').then(response => {
       setGenres(response.data);
@@ -64,8 +64,10 @@ export function App() {
     <div style={{ display: 'flex', flexDirection: 'row' }}>
      
      <SideBar/>
-     <Content/>
-     
+     <Content
+      
+     />
+
     </div>
   )
 }

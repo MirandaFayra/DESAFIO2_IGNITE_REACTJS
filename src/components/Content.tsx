@@ -1,7 +1,17 @@
+import { useEffect, useState } from 'react';
+import { MovieProps } from '../App';
 import { MovieCard } from '../components/MovieCard';
+import { api } from '../services/api';
 
 
 export function Content() {
+  const [movies, setMovies] = useState<MovieProps[]>([]);
+  
+  useEffect(() => {
+    api.get<MovieProps[]>(`movies/?Genre_id=${selectedGenreId}`).then(response => {
+      setMovies(response.data);
+    });
+  }, [selectedGenreId]);
 
 
   return (

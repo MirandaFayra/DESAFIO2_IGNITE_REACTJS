@@ -3,10 +3,6 @@ import { Button } from '../components/Button';
 
 export function SideBar() {
   
-    function handleClickButton(id: number) {
-      setSelectedGenreId(id);
-    }
-
   return(
     <>
     {/* Barra Lateral */}
